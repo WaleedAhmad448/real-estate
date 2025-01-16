@@ -7,12 +7,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
-use App\Comment;
-use App\Message;
-use App\User;
+use App\Models\Comment;
+use App\Models\Message;
+use App\Models\User;
 use Auth;
 use Hash;
 use Toastr;
+use Illuminate\Support\Str;
 
 class DashboardController extends Controller
 {
@@ -48,7 +49,7 @@ class DashboardController extends Controller
         $user = User::find(Auth::id());
 
         $image = $request->file('image');
-        $slug  = str_slug($request->name);
+        $slug  = Str::slug($request->name);
 
         if(isset($image)){
             $currentDate = Carbon::now()->toDateString();

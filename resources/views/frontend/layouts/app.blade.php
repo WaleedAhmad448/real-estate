@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 
+    <link rel="stylesheet" href="{{ asset('path/to/toastr.min.css') }}">
+
+
     @yield('styles')
     
     <link href="{{ asset('frontend/css/styles.css') }}" rel="stylesheet">
@@ -41,31 +44,35 @@
             @yield('content')
         </div>
 
-        {{-- FOOTER --}}
+                {{-- FOOTER --}}
         @include('frontend.partials.footer')
 
-
-        <!--JavaScript at end of body for optimized loading-->
-        {{-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> --}}
-        <script type="text/javascript" src="{{ asset('frontend/js/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('frontend/js/materialize.min.js') }}"></script>
+        <!-- JavaScript at end of body for optimized loading -->
+        <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('frontend/js/materialize.min.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        {!! Toastr::message() !!}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
         <script>
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
-                    toastr.error('{{ $error }}','Error',{
-                        closeButtor: true,
-                        progressBar: true 
+                    toastr.error('{{ $error }}', 'Error', {
+                        closeButton: true,
+                        progressBar: true
                     });
                 @endforeach
+            @endif
+
+            @if(session('success'))
+                toastr.success("{{ session('success') }}", 'Success', {
+                    closeButton: true,
+                    progressBar: true
+                });
             @endif
         </script>
 
         @yield('scripts')
-
         <script>
         $(document).ready(function(){
             $('.sidenav').sidenav();

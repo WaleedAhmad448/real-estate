@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Post;
-use App\Category;
-use App\Tag;
-use App\Comment;
+use App\Models\Post;
+use App\Models\Category;
+use App\Models\Tag;
+use App\Models\Comment;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,6 +14,7 @@ use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
 use Toastr;
 use Auth;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -45,7 +46,7 @@ class PostController extends Controller
         ]);
 
         $image = $request->file('image');
-        $slug  = str_slug($request->title);
+        $slug  = Str::slug($request->title);
 
         if(isset($image)){
             $currentDate = Carbon::now()->toDateString();
@@ -113,7 +114,7 @@ class PostController extends Controller
         ]);
 
         $image = $request->file('image');
-        $slug  = str_slug($request->title);
+        $slug  = Str::slug($request->title);
         
         $post = Post::find($post->id);
 

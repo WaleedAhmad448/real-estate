@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-use App\Category;
+use App\Models\Category;
 use Carbon\Carbon;
 use Toastr;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -35,7 +36,7 @@ class CategoryController extends Controller
         ]);
 
         $image = $request->file('image');
-        $slug  = str_slug($request->name);
+        $slug  = Str::slug($request->name);
 
         if(isset($image)){
             $currentDate = Carbon::now()->toDateString();
@@ -89,7 +90,7 @@ class CategoryController extends Controller
         ]);
 
         $image = $request->file('image');
-        $slug  = str_slug($request->name);
+        $slug  = Str::slug($request->name);
         $category = Category::find($id);
 
         if(isset($image)){

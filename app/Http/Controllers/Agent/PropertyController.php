@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-use App\Property;
-use App\Feature;
-use App\PropertyImageGallery;
+use App\Models\Property;
+use App\Models\Feature;
+use App\Models\PropertyImageGallery;
 use Carbon\Carbon;
 use Toastr;
 use Auth;
 use File;
+use Illuminate\Support\Str;
 
 class PropertyController extends Controller
 {
@@ -54,7 +55,7 @@ class PropertyController extends Controller
         ]);
 
         $image = $request->file('image');
-        $slug  = str_slug($request->title);
+        $slug  = Str::slug($request->title);
 
         if(isset($image)){
             $currentDate = Carbon::now()->toDateString();
@@ -93,7 +94,7 @@ class PropertyController extends Controller
         $property->bedroom  = $request->bedroom;
         $property->bathroom = $request->bathroom;
         $property->city     = $request->city;
-        $property->city_slug= str_slug($request->city);
+        $property->city_slug= Str::slug($request->city);
         $property->address  = $request->address;
         $property->area     = $request->area;
 
@@ -167,7 +168,7 @@ class PropertyController extends Controller
         ]);
 
         $image = $request->file('image');
-        $slug  = str_slug($request->title);
+        $slug  = Str::slug($request->title);
 
         $property = Property::find($property->id);
 
@@ -217,7 +218,7 @@ class PropertyController extends Controller
         $property->bedroom  = $request->bedroom;
         $property->bathroom = $request->bathroom;
         $property->city     = $request->city;
-        $property->city_slug= str_slug($request->city);
+        $property->city_slug= Str::slug($request->city);
         $property->address  = $request->address;
         $property->area     = $request->area;
 

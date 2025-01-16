@@ -11,16 +11,17 @@ use Carbon\Carbon;
 
 use App\Mail\Contact;
 
-use App\Property;
-use App\Post;
-use App\Comment;
+use App\Models\Property;
+use App\Models\Post;
+use App\Models\Comment;
 
-use App\Setting;
-use App\Message;
-use App\User;
+use App\Models\Setting;
+use App\Models\Message;
+use App\Models\User;
 use Toastr;
 use Auth;
 use Hash;
+use Illuminate\Support\Str;
 
 class DashboardController extends Controller
 {
@@ -140,7 +141,7 @@ class DashboardController extends Controller
         $user = User::find(Auth::id());
 
         $image = $request->file('image');
-        $slug  = str_slug($request->name);
+        $slug  = Str::slug($request->name);
 
         if(isset($image)){
             $currentDate = Carbon::now()->toDateString();
