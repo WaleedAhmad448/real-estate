@@ -6,6 +6,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Toastr;
+use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {

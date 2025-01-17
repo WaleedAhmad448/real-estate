@@ -10,7 +10,7 @@ use App\Models\Gallery;
 use App\Models\Album;
 use Carbon\Carbon;
 use Toastr;
-
+use Illuminate\Support\Str;
 class GalleryController extends Controller
 {
 

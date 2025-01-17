@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Agent;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
@@ -15,7 +16,6 @@ use App\Models\User;
 use Auth;
 use Hash;
 use Toastr;
-use Illuminate\Support\Str;
 
 class DashboardController extends Controller
 {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Agent;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -13,7 +14,6 @@ use Carbon\Carbon;
 use Toastr;
 use Auth;
 use File;
-use Illuminate\Support\Str;
 
 class PropertyController extends Controller
 {
